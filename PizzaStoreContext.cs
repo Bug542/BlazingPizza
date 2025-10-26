@@ -9,4 +9,11 @@ public class PizzaStoreContext : DbContext
   }
 
   public DbSet<PizzaSpecial> Specials { get; set; }
+  public DbSet<Order> Orders { get; set; }
+
+  protected override void OnModelCreating(ModelBuilder modelBuilder)
+  {
+      modelBuilder.Entity<PizzaTopping>()
+          .HasKey(pt => new { pt.PizzaId, pt.ToppingId });
+  }
 }
